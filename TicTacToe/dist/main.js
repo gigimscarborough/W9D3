@@ -45,7 +45,7 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
   \*************************/
 /***/ ((module) => {
 
-eval("class View {\n  constructor(game, $el) {}\n\n  bindEvents() {}\n\n  makeMove($square) {}\n\n  setupBoard() {\n\n    let $ul = $('<ul>').addClass('gridlist')\n    $ul.css('display', 'flex').css('width', '310px').css('flex-wrap', 'wrap')\n\n    for (let i=0; i < 9; i++){\n     $ul.append($('<li>\"A\"</li>'))\n    }\n  }\n}\n\n\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    $el.append(this.setupBoard());\n  }\n\n  bindEvents() {\n    $('ul').on('click', game.playMove);\n  }\n\n  makeMove($square) {\n    \n  }\n\n  setupBoard() {\n    \n    let $ul = $('<ul>').addClass('gridlist')\n    $ul.css('display', 'flex').css('width', '309px').css('flex-wrap', 'wrap')\n    $ul.css('list-style-type', 'none')\n\n    for (let i=0; i < 9; i++){\n      let $li = $('<li>?</li>')\n      $li.css('box-sizing', 'border-box').css('border-style', 'solid').css('width', '103px').css('background-color', 'grey')\n      $li.hover(\n        function () {\n          $(this).css('background-color', 'yellow')\n        },\n        function () {\n          $(this).css('background-color', 'grey')\n        })\n      $ul.append($li)\n    };\n    return $ul\n  }\n}\n\n\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 
@@ -79,7 +79,7 @@ eval("class View {\n  constructor(game, $el) {}\n\n  bindEvents() {}\n\n  makeMo
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\"); // require appropriate file\"\nconst Game = __webpack_require__(/*! ../../TicTacToe node solution/game.js */ \"../TicTacToe node solution/game.js\")// require appropriate file\n\n  $(() => {\n    const curGame = new Game()\n    const curView = new View()\n\n    const $container = $(\".ttt\")\n\n    \n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const View = __webpack_require__ (/*! ./ttt-view.js */ \"./src/ttt-view.js\"); // require appropriate file\"\nconst Game = __webpack_require__(/*! ../../TicTacToe node solution/game.js */ \"../TicTacToe node solution/game.js\")// require appropriate file\n\n  $(() => {\n    const $container = $(\".ttt\")\n    const curGame = new Game()\n    const curView = new View(curGame, $container)\n    return curView\n    \n  });\n\n\n//# sourceURL=webpack:///./src/index.js?");
 })();
 
 /******/ })()

@@ -1,18 +1,35 @@
 class View {
-  constructor(game, $el) {}
+  constructor(game, $el) {
+    $el.append(this.setupBoard());
+  }
 
-  bindEvents() {}
+  bindEvents() {
+    $('ul').on('click', game.playMove);
+  }
 
-  makeMove($square) {}
+  makeMove($square) {
+    
+  }
 
   setupBoard() {
-
+    
     let $ul = $('<ul>').addClass('gridlist')
-    $ul.css('display', 'flex').css('width', '310px').css('flex-wrap', 'wrap')
+    $ul.css('display', 'flex').css('width', '309px').css('flex-wrap', 'wrap')
+    $ul.css('list-style-type', 'none')
 
     for (let i=0; i < 9; i++){
-     $ul.append($('<li>"A"</li>'))
-    }
+      let $li = $('<li>?</li>')
+      $li.css('box-sizing', 'border-box').css('border-style', 'solid').css('width', '103px').css('background-color', 'grey')
+      $li.hover(
+        function () {
+          $(this).css('background-color', 'yellow')
+        },
+        function () {
+          $(this).css('background-color', 'grey')
+        })
+      $ul.append($li)
+    };
+    return $ul
   }
 }
 
